@@ -37,8 +37,6 @@ func main() {
 		panic(err)
 	}
 
-
-
 	time.Sleep(time.Second * 10)
 
 	fmt.Println(htmlstring)
