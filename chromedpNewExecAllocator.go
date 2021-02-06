@@ -52,7 +52,7 @@ func defaultOpts() []chromedp.ExecAllocatorOption {
 		chromedp.Headless,
 		chromedp.NoSandbox,
 		chromedp.NoDefaultBrowserCheck,
-		// chromedp.Flag("remote-debugging-port", 9222),
+		chromedp.Flag("remote-debugging-port", "9222"),
 	)
 	return opts
 }
