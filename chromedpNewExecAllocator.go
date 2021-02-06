@@ -15,6 +15,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/chromedp/chromedp"
@@ -33,6 +34,16 @@ func main() {
 	if err := chromedp.Run(taskCtx); err != nil {
 		panic(err)
 	}
+
+	var htmlstring string
+	if err := chromedp.Run(taskCtx,
+		chromedp.Navigate("https://www.baidu.com"),
+		chromedp.OuterHTML("html", &htmlstring),
+	); err != nil {
+		panic(err)
+	}
+
+	fmt.Println(htmlstring)
 }
 
 func defaultOpts() []chromedp.ExecAllocatorOption {
@@ -41,7 +52,7 @@ func defaultOpts() []chromedp.ExecAllocatorOption {
 		chromedp.Headless,
 		chromedp.NoSandbox,
 		chromedp.NoDefaultBrowserCheck,
-		chromedp.Flag("remote-debugging-port", 9222),
+		// chromedp.Flag("remote-debugging-port", 9222),
 	)
 	return opts
 }
