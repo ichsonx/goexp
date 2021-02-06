@@ -10,13 +10,14 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/chromedp/chromedp"
 	"time"
+
+	"github.com/chromedp/chromedp"
 )
 
 func main() {
 	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(),
-		chromedp.Flag("default-browser-check", true))
+		chromedp.Flag("default-browser-check", false))
 	defer cancel()
 
 	ctx, cancle := chromedp.NewContext(allocCtx)
@@ -25,15 +26,15 @@ func main() {
 	//ctx, cancle := chromedp.NewContext(context.Background())
 	//defer cancle()
 
-	if err := chromedp.Run(ctx); err != nil{
+	if err := chromedp.Run(ctx); err != nil {
 		panic(err)
 	}
 
 	var htmlstring string
 	if err := chromedp.Run(ctx,
 		chromedp.Navigate("https://www.baidu.com"),
-		chromedp.OuterHTML("html", & htmlstring),
-		); err != nil{
+		chromedp.OuterHTML("html", &htmlstring),
+	); err != nil {
 		panic(err)
 	}
 
@@ -41,5 +42,3 @@ func main() {
 
 	fmt.Println(htmlstring)
 }
-
-
