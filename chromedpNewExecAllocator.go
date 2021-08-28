@@ -37,7 +37,7 @@ func main() {
 
 	var htmlstring string
 	if err := chromedp.Run(taskCtx,
-		chromedp.Navigate("https://www.baidu.com"),
+		chromedp.Navigate("https://www.kan224.com/forum-36-2.html"),
 		chromedp.OuterHTML("html", &htmlstring),
 	); err != nil {
 		panic(err)
